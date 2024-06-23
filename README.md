@@ -5,3 +5,10 @@
 5. tsc –init
 6. buat file bin/www.ts pada root
 7. tambahkan <code>"include": ["./bin/www.ts"]</code> di file tsconfig.json
+9. Running <code>npm run dev</code>
+10. npm i objection knex ts-node pg
+11. npm i -D @types/pg
+12. npx knex init -x ts
+13. seting configurasi database di knekfile.ts
+14. untuk membuat tabel <code>npx knex migrate:make cars<code>, <code>npx knex migrate:make users</code>, dst
+15. running migrate <code>npx knex migrate:latest</code>
