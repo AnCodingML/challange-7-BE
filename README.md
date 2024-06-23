@@ -12,3 +12,4 @@
 13. seting configurasi database di knekfile.ts
 14. untuk membuat tabel <code>npx knex migrate:make cars<code>, <code>npx knex migrate:make users</code>, dst
 15. running migrate <code>npx knex migrate:latest</code>
+16. running seed <code>npx knex seed:make cars</code>, <code>npx knex seed:make users</code>, dst

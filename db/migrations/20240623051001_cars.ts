@@ -3,23 +3,23 @@ import { onUpgradeTrigger } from "../helper/knex.helper";
 
 export async function up(knex: Knex): Promise<void> {
    return knex.schema.createTable('cars', (table: Knex.TableBuilder) => {
-      table.increments('id').primary();
-      table.string('plate', 255).notNullable();
-      table.string('manufacture',255).nullable();
-      table.string('model',255).nullable();
-      table.string('image',255).nullable();
-      table.integer('rent_per_day',255).nullable();
-      table.integer('capacity',255).nullable();
-      table.text('description').nullable();
-      table.string('transmission',255).nullable();
-      table.string('type',255).nullable();
-      table.integer('year',255).nullable();
-      table.string('features').nullable();
-      table.string('available_at',255).nullable();
+      table.uuid('id').primary(); // UUID type for id
+      table.string('plate').notNullable();
+      table.string('manufacture').notNullable();
+      table.string('model').notNullable();
+      table.string('image');
+      table.integer('rentPerDay').notNullable();
+      table.integer('capacity').notNullable();
+      table.text('description');
+      table.timestamp('availableAt');
+      table.string('transmission').notNullable();
+      table.boolean('available').notNullable();
+      table.string('type').notNullable();
+      table.integer('year').notNullable();
+      table.specificType('options', 'text ARRAY');
+      table.specificType('specs', 'text ARRAY');
       table.string("created_by", 255);
       table.string("updated_by", 255);
-      table.timestamp("created_at").defaultTo(knex.fn.now());
-      table.timestamp("updated_at").defaultTo(knex.fn.now());
    }).then(() => {
       return knex.raw(onUpgradeTrigger("cars"))
    })
