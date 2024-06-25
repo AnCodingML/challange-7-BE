@@ -20,6 +20,8 @@ export async function up(knex: Knex): Promise<void> {
       table.specificType('specs', 'text ARRAY');
       table.string("created_by", 255);
       table.string("updated_by", 255);
+      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.timestamp("updated_at").defaultTo(knex.fn.now());
    }).then(() => {
       return knex.raw(onUpgradeTrigger("cars"))
    })

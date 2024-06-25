@@ -1,14 +1,15 @@
 import { Knex } from "knex";
-import axios from "axios";
+import fs from "fs";
+import path from "path";
 
 export async function seed(knex: Knex): Promise<void> {
-    // URL of the JSON data
-    const url = 'https://raw.githubusercontent.com/fnurhidayat/probable-garbanzo/main/data/cars.min.json';
+    // Path to the JSON file
+    const filePath = path.resolve(__dirname, '../../app/public/json/seedCar.json');
 
     try {
-        // Fetch data from the URL
-        const response = await axios.get(url);
-        const data = response.data;
+        // Read the JSON file
+        const fileContent = fs.readFileSync(filePath, 'utf-8');
+        const data = JSON.parse(fileContent);
 
         // Ensure data is in the format you expect
         // Assuming the data is an array of objects
@@ -22,6 +23,6 @@ export async function seed(knex: Knex): Promise<void> {
         // Inserts seed entries
         await knex("cars").insert(data);
     } catch (error) {
-        console.error("Error fetching or inserting data:", error);
+        console.error("Error reading or inserting data:", error);
     }
-};
+}
