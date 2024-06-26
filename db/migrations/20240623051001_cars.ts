@@ -2,8 +2,9 @@ import type { Knex } from "knex";
 import { onUpgradeTrigger } from "../helper/knex.helper";
 
 export async function up(knex: Knex): Promise<void> {
+   await knex.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
    return knex.schema.createTable('cars', (table: Knex.TableBuilder) => {
-      table.uuid('id').primary(); // UUID type for id
+      table.uuid('id').primary().defaultTo(knex.raw('uuid_generate_v4()')); // UUID type for id with default value
       table.string('plate').notNullable();
       table.string('manufacture').notNullable();
       table.string('model').notNullable();

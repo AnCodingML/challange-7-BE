@@ -1,6 +1,8 @@
 // carService.ts
 
 import CarsRepository, { carsType } from '../repositories/carsRepository';
+import cloudinary from '../middleware/cloudinary';
+import { UUID } from "crypto";
 
 interface FilterParams {
     driverType?: string;
@@ -14,7 +16,7 @@ export default new class CarService {
             let cars;
 
             if (!query) {
-                cars = await CarsRepository.findAll();
+                cars = await CarsRepository.findAllCar();
             } else {
                 // Parse the query parameters into the FilterParams type
                 const filters: FilterParams = {
@@ -34,4 +36,36 @@ export default new class CarService {
             throw err;
         }
     }
+    async create(requestBody:carsType) {
+        return CarsRepository.create(requestBody);
+    }
+    async delete(id: UUID) {
+        return CarsRepository.delete(id)
+    }
+
+    async upload(file: any) {
+        const fileBase64 = file.buffer.toString('base64');
+        const fileString = `data:${file.mimetype};base64,${fileBase64}`;        
+        try{
+            const result = await cloudinary.uploader.upload(fileString);
+            return result
+        }
+        catch(e) {
+            throw(e)
+        }
+    }
+    async deleteImg (id: UUID) {
+     
+          try {
+            const nameImg = await CarsRepository.findImage(id)
+            const result = await cloudinary.uploader.destroy(nameImg.image);
+            console.log(nameImg)
+            console.log('Gambar di hapus:', result);
+            return result;
+          } catch (error) {
+            console.error('Error hapus gambar:', error);
+            throw error;
+          }
+    }
+    
 }
