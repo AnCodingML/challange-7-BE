@@ -14,8 +14,8 @@ export class CarsModel extends Model {
    available!: boolean;
    type!: string | null;
    year!: number | null;
-   options!: string | null;
-   specs!: string | null;
+   options!: string[] | null;
+   specs!: string[] | null;
    created_by!: string;
    updated_by!: string;
    created_at!: string;

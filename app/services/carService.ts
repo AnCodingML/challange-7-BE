@@ -3,11 +3,17 @@
 import CarsRepository, { carsType } from '../repositories/carsRepository';
 import cloudinary from '../middleware/cloudinary';
 import { UUID } from "crypto";
+import { JSONSchemaArray } from "objection";
 
 interface FilterParams {
     driverType?: string;
     rentalTime?: string;
     passengerCount?: number;
+    sizeCar?:string;
+    searchCar?:string;
+    options?:JSONSchemaArray,
+    specs?: JSONSchemaArray,
+    id?:UUID
 }
 
 export default new class CarService {
@@ -18,11 +24,13 @@ export default new class CarService {
             if (!query) {
                 cars = await CarsRepository.findAllCar();
             } else {
-                // Parse the query parameters into the FilterParams type
                 const filters: FilterParams = {
                     driverType: query.driverType as string,
                     rentalTime: query.rentalTime as string,
                     passengerCount: query.passengerCount ? parseInt(query.passengerCount, 10) : undefined,
+                    sizeCar: query.sizeCar as string,
+                    searchCar: query.searchCar as string,
+                    id:query.id as UUID
                 };
 
                 cars = await CarsRepository.find(filters);
@@ -37,13 +45,18 @@ export default new class CarService {
         }
     }
     async create(requestBody:carsType) {
-        return CarsRepository.create(requestBody);
+        CarsRepository.create(requestBody);
+        console.log(requestBody)
     }
     async delete(id: UUID) {
         return CarsRepository.delete(id)
     }
+    async update(id: UUID, requestBody: carsType) {
+        return CarsRepository.update(id, requestBody)
+    }
 
     async upload(file: any) {
+        console.log(file)
         const fileBase64 = file.buffer.toString('base64');
         const fileString = `data:${file.mimetype};base64,${fileBase64}`;        
         try{
@@ -55,17 +68,12 @@ export default new class CarService {
         }
     }
     async deleteImg (id: UUID) {
-     
-          try {
-            const nameImg = await CarsRepository.findImage(id)
-            const result = await cloudinary.uploader.destroy(nameImg.image);
-            console.log(nameImg)
-            console.log('Gambar di hapus:', result);
-            return result;
-          } catch (error) {
-            console.error('Error hapus gambar:', error);
-            throw error;
-          }
+        try {
+        const nameImg = await CarsRepository.findImage(id)
+        const result = await cloudinary.uploader.destroy(nameImg.image);
+        return result;
+        } catch (error) {
+        throw error;
+        }
     }
-    
 }

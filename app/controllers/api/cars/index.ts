@@ -43,9 +43,35 @@ async function deleteCar (req:any, res:Response){
 
 }
 
+async function updateCar (req:any, res:Response){
+    const { id } = req.query;
+    if(!req.file) {
+        try{
+            const car = await CarsService.update(id, req.body);
+            return res.status(202).send("Data berhasil di update")
+        }
+        catch(e){
+            console.log(e)
+            return res.status(400).send(e)
+        }
+    }
+    try{
+        const imageDelete = await CarsService.deleteImg(id);
+        const fileUpload = await CarsService.upload(req.file);
+        const car = await CarsService.update(id, {
+            ...req.body,
+            image: fileUpload.public_id
+        });
+        res.status(200).send("Data berhasil di update")
+    }catch(e) {
+        return res.status(400).send("Gagal upload file")
+    }
+}
+
 
 export default {
     getCars,
     addCar,
-    deleteCar
+    deleteCar,
+    updateCar
 }

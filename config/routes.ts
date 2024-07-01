@@ -8,6 +8,7 @@ apiRouter.route("/cars")
     .get(controllers.cars.getCars)
     .post(uploadOnMemory.single('image'), controllers.cars.addCar)
     .delete(controllers.cars.deleteCar)
+    .put(uploadOnMemory.single('image'),controllers.cars.updateCar)
 
 export default {
     apiRouter
