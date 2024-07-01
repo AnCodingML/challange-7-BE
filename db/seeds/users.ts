@@ -12,6 +12,7 @@ export async function seed(knex: Knex): Promise<void> {
             email: "superadmin@mail.com", 
             password: await encryptPassword("123"), 
             role: "superadmin",
+            avatar: "/images/profil-super-admin.jpg"
         },
     ]);
 };
