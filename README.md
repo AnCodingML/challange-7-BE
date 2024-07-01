@@ -1,3 +1,11 @@
+# How to Use
+1. npm run i
+2. npm run migrate
+3. npm run dev
+
+<br><br>
+
+# Dev Step
 1. npm init -y
 2. npm install express --save
 3. npm install --save-dev nodemon
