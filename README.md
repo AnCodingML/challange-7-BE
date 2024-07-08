@@ -4,6 +4,18 @@
 3. npm run dev
 
 <br><br>
+url: http://8.215.36.119:5000
+<br><br>
+env:
+PORT= <br>
+CLIENT= <br> 
+DATABASE= <br>
+DB_USER= <br>
+PASSWORD= <br>
+CLOUD_NAME= <br>
+API_KEY= <br>
+API_SECRET= <br>
+<br><br>
 
 # Dev Step
 1. npm init -y
