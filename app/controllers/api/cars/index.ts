@@ -12,35 +12,45 @@ async function getCars (req:Request, res:Response){
 }
 
 async function addCar (req:any, res:Response){
-    if(!req.body){
-        return res.status(400).send("Invalid Request")
+    if(req.body.plate && 
+        req.body.manufacture &&
+        req.body.model &&
+        req.body.rentPerDay &&
+        req.body.capacity &&
+        req.body.transmission &&
+        req.body.available &&
+        req.body.type &&
+        req.body.year
+    ){
+        try {
+            const fileUpload = await CarsService.upload(req.file);
+            const car = await CarsService.create({
+                ...req.body,
+                image: fileUpload.public_id
+            });
+            return res.status(201).json(car);
+        }catch(e){
+            return res.status(400).send("Gagal upload file")
+        }
     }
-    try {
-        const fileUpload = await CarsService.upload(req.file);
-        const car = await CarsService.create({
-            ...req.body,
-            image: fileUpload.public_id
-        });
-        return res.status(201).json(car);
-    }catch(e){
-        return res.status(400).send("Gagal upload file")
-    }
+    return res.status(400).send("Invalid Request")
+
 }
 
 async function deleteCar (req:any, res:Response){
     const { id } = req.query;
-    if (!id) {
-        return res.status(400).send("ID tidak boleh kosong");
-    }
+    if (id) {
+        
     try{
         const imageDelete = await CarsService.deleteImg(id);
         const car = await CarsService.delete(id);
-        res.status(200).send("Data berhasil di hapus")
+        return res.status(200).send("Data berhasil di hapus")
     }
     catch(e){
         return res.status(404).send("Data tidak ditemukan!")
     }
 
+    } return res.status(400).send("ID tidak boleh kosong");   
 }
 
 async function updateCar (req:any, res:Response){

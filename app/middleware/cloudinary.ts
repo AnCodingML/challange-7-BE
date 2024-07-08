@@ -1,5 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
-require('dotenv').config()
+import dotenv from 'dotenv'
+dotenv.config()
+
 const {CLOUD_NAME, API_KEY, API_SECRET} = process.env
 
 cloudinary.config({ 

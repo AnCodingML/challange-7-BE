@@ -21,3 +21,6 @@
 14. untuk membuat tabel <code>npx knex migrate:make cars<code>, <code>npx knex migrate:make users</code>, dst
 15. running migrate <code>npx knex migrate:latest</code>
 16. running seed <code>npx knex seed:make cars</code>, <code>npx knex seed:make users</code>, dst
+16. <code>.node_modules/.bin/eslint --init</code> atau <code>npm init @eslint/config@latest</code> untuk menyiapkan eslint
+17. Tambah config eslint di package.json
+18. <code>npm i --save-dev jest ts-jest @types/jest</code> dan <code> npm init jest@latest</code> dan <code>npx ts-jest config:init</code> untuk inisiasi test

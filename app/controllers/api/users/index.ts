@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { UsersModel } from '../../../models/users';
-import { encryptPassword, checkPassword, createToken } 
-from '../../../utils/encrypt';
+import { checkPassword, createToken } from '../../../utils/encrypt';
+
 async function login(req:Request, res:Response){
    const { email, password } = req.body;
    const user = await UsersModel
@@ -15,7 +15,7 @@ async function login(req:Request, res:Response){
        })
    }
 
-   const isPasswordCorrect = await checkPassword(user.password, password)
+   const isPasswordCorrect = await checkPassword(user.password as string, password)
 
    if(!isPasswordCorrect){
        return res.status(401)
@@ -45,17 +45,6 @@ async function login(req:Request, res:Response){
    })
 }
 
-async function users(req:any, res:Response){
-    res.status(200).json({
-        status: 'OK',
-        message: "Success",
-        data: {
-            nama: req.user.nama,
-            email: req.user.email,
-            avatar: req.user.avatar,
-            role: req.user.role
-        }
-    })
-}
 
-export default { login, users }
+
+export default { login }
