@@ -21,6 +21,6 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          git pull
+          git pull origin main
           npm i -force
           pm2 restart be
