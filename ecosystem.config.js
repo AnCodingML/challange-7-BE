@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'fe-challange-8',
+      name: 'be-challange-8',
       script: 'bin/www.ts',
       interpreter: 'ts-node',
       watch: true,
