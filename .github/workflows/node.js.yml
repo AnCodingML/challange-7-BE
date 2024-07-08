@@ -20,6 +20,4 @@ jobs:
 
     - name: Run deployment script
       run: |
-        ssh-add -l
-        echo ${{ secrets.VALUE }}
-        # Your deployment commands here
+        whoami
