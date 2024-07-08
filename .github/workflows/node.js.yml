@@ -21,6 +21,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
+          cd project/binar-chpt-8/challange-7-BE
           git pull origin main
           npm i -force
           pm2 restart be
