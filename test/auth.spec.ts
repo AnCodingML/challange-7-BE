@@ -11,7 +11,7 @@ const user = {
 }
 
 beforeAll((done) => {
-   server = app.listen(5000, () => {
+   server = app.listen(5002, () => {
        done()
    })
 })
