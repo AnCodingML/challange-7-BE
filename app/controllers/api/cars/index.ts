@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import CarsService from '../../../services/carService';
+import { UUID } from 'crypto';
 
 async function getCars (req:Request, res:Response){
-   try {
-      const result = await CarsService.list(req.query);
-
-      res.status(200).json(result);
-  } catch (error:any) {
-      res.status(500).json({ message: error.message });
-  }
-}
+    try {
+       const result = await CarsService.list(req.query);
+ 
+       res.status(200).json(result);
+   } catch (error: any) {
+    res.status(500).json({ message: error.message });
+    }
+ }
 
 async function addCar (req:any, res:Response){
     if(req.body.plate && 
@@ -37,20 +38,20 @@ async function addCar (req:any, res:Response){
 
 }
 
-async function deleteCar (req:any, res:Response){
+async function deleteCar(req: Request, res: Response) {
     const { id } = req.query;
-    if (id) {
-        
-    try{
-        const imageDelete = await CarsService.deleteImg(id);
-        const car = await CarsService.delete(id);
-        return res.status(200).send("Data berhasil di hapus")
-    }
-    catch(e){
-        return res.status(404).send("Data tidak ditemukan!")
+
+    if (!id) {
+        return res.status(400).send("ID tidak boleh kosong");
     }
 
-    } return res.status(400).send("ID tidak boleh kosong");   
+    try {
+        await CarsService.deleteImg(id as UUID);
+        await CarsService.delete(id as UUID);
+        return res.status(200).send("Data berhasil di hapus");
+    } catch (e) {
+        return res.status(404).send("Data tidak ditemukan!");
+    }
 }
 
 async function updateCar (req:any, res:Response){

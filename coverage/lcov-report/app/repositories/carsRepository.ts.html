@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.76% </span>
+                <span class="strong">50.47% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>68/105</span>
+                <span class='fraction'>53/105</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.73% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/23</span>
+                <span class='fraction'>2/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.76% </span>
+                <span class="strong">50.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>68/105</span>
+                <span class='fraction'>53/105</span>
             </div>
         
             
@@ -241,35 +241,35 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">// import {MaybeCompositeId} from "objection";
 import { UUID } from "crypto";
@@ -344,36 +344,36 @@ export default new class CarsRepository {
         };
     }
 &nbsp;
-    async create(createArgs: carsType) {
-        if (createArgs.options<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !Array.isArray(createArgs.options))</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+    async <span class="fstat-no" title="function not covered" >create(createArgs: carsType) {</span>
+<span class="cstat-no" title="statement not covered" >        if (createArgs.options &amp;&amp; !Array.isArray(createArgs.options)) {</span>
 <span class="cstat-no" title="statement not covered" >            createArgs.options = JSON.parse(createArgs.options as unknown as string);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-        if (createArgs.specs<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !Array.isArray(createArgs.specs))</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        if (createArgs.specs &amp;&amp; !Array.isArray(createArgs.specs)) {</span>
 <span class="cstat-no" title="statement not covered" >            createArgs.specs = JSON.parse(createArgs.specs as unknown as string);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-        return CarsModel.query().insert(createArgs).returning('*')
-    }
+<span class="cstat-no" title="statement not covered" >        return CarsModel.query().insert(createArgs).returning('*')</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 &nbsp;
     async <span class="fstat-no" title="function not covered" >delete(id: UUID) {</span>
 <span class="cstat-no" title="statement not covered" >        return CarsModel.query().deleteById(id).throwIfNotFound()</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-    async findImage(id: UUID) {
-        const carImg =  CarsModel.query().findById(id).select('image')
-        return carImg
-    }
-    async update(id: UUID, updateArgs: Cars) {
-        if (updateArgs.options<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !Array.isArray(updateArgs.options))</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+    async <span class="fstat-no" title="function not covered" >findImage(id: UUID) {</span>
+<span class="cstat-no" title="statement not covered" >        const carImg =  CarsModel.query().findById(id).select('image')</span>
+<span class="cstat-no" title="statement not covered" >        return carImg</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+    async <span class="fstat-no" title="function not covered" >update(id: UUID, updateArgs: Cars) {</span>
+<span class="cstat-no" title="statement not covered" >        if (updateArgs.options &amp;&amp; !Array.isArray(updateArgs.options)) {</span>
 <span class="cstat-no" title="statement not covered" >            updateArgs.options = JSON.parse(updateArgs.options as unknown as string);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-        if (updateArgs.specs<span class="branch-0 cbranch-no" title="branch not covered" > &amp;&amp; !Array.isArray(updateArgs.specs))</span> <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        if (updateArgs.specs &amp;&amp; !Array.isArray(updateArgs.specs)) {</span>
 <span class="cstat-no" title="statement not covered" >            updateArgs.specs = JSON.parse(updateArgs.specs as unknown as string);</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-        return CarsModel.query()
-        .where({ id })
-        .patch(updateArgs)
-        .throwIfNotFound()
-        .returning("*");
-    }
+<span class="cstat-no" title="statement not covered" >        return CarsModel.query()</span>
+<span class="cstat-no" title="statement not covered" >        .where({ id })</span>
+<span class="cstat-no" title="statement not covered" >        .patch(updateArgs)</span>
+<span class="cstat-no" title="statement not covered" >        .throwIfNotFound()</span>
+<span class="cstat-no" title="statement not covered" >        .returning("*");</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
   
 }</pre></td></tr></table></pre>
 
@@ -382,7 +382,7 @@ export default new class CarsRepository {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-07T11:21:31.747Z
+                at 2024-07-08T13:44:30.944Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
