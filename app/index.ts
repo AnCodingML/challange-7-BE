@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 dotenv.config();
-const {CLIENT,DATABASE, USER,PASSWORD} = process.env
+const {CLIENT,DATABASE, DB_USER,PASSWORD} = process.env
 
 const app: Express = express();
 // Set the static files directory
@@ -18,7 +18,7 @@ const knexInstance = knex({
     client: CLIENT,
     connection: {
     database: DATABASE,
-    user: USER,
+    user: DB_USER,
     password: PASSWORD
     }
 })

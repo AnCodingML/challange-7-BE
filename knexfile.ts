@@ -2,7 +2,7 @@ import type { Knex } from "knex";
 import dotenv from 'dotenv'
 dotenv.config()
 
-const {CLIENT, DATABASE, USER,PASSWORD, HOST_PROD, DATABASE_PROD, USER_PROD, PASSWORD_PROD, PORT_PROD} = process.env 
+const {CLIENT, DATABASE, DB_USER,PASSWORD, HOST_PROD, DATABASE_PROD, USER_PROD, PASSWORD_PROD, PORT_PROD} = process.env 
 
 // Update with your config settings.
 
@@ -11,7 +11,7 @@ const config: { [key: string]: Knex.Config } = {
     client: CLIENT,
     connection: {
       database: DATABASE,
-      user: USER,
+      user: DB_USER,
       password: PASSWORD
     },
     migrations: {
