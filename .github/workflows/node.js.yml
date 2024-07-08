@@ -13,11 +13,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.3
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@v1.0.3
       with:
-        ssh-private-key: ${{ secrets.PRIVATE_KEY }}
-
-    - name: Run deployment script
-      run: |
-        whoami
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: whoami
