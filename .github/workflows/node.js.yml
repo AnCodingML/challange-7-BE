@@ -24,4 +24,4 @@ jobs:
           cd project/binar-chpt-8/challange-7-BE
           git pull origin main
           npm i -force
-          pm2 restart fe-challange-8
+          pm2 restart be-challange-8
