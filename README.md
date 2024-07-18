@@ -4,7 +4,7 @@
 3. npm run dev
 
 <br><br>
-url: http://8.215.36.119:5000
+url: http://54.179.193.110:5000/
 <br><br>
 env:
 PORT= <br>
