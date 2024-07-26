@@ -1,29 +1,26 @@
 name: Deploy
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  Deploy:
-    name: Deploy to EC2
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - uses: actions/checkout@v2 
-      - name: Build & Deploy
-        env:
-          PRIVATE_KEY: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
-          HOSTNAME: ${{ secrets.AWS_HOST }}
-          USER_NAME: ${{ secrets.AWS_USERNAME }}
-      
-        run: |
-          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key $USER_NAME@$HOSTNAME '
-            # Now we have got the access of EC2 and we will start the deploy.
-            cd /home/ubuntu/project/binar-chpt-8/challange-7-BE &&
-            git pull origin main &&
-            npm install --force &&
-            pm2 restart fe-challange-8
-          '
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: connect alibaba cloud using ssh
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd project/binar-chpt-8/challange-7-BE
+          git pull origin main
+          npm i -force
+          pm2 restart be-challange-8
